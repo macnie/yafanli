@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="style/global.css" />
+<link rel="stylesheet" href="style/popup.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript" src="js/popup.js"></script>
+</head>
+<body>
+	<div id="loading"><img src="images/loading.gif" alt="读取数据" /></div>
+	<div id="wrapper" class="hidden">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h4 class="panel-title">采集到了宝贝信息</h4></div>
+			<form id="form" action="" target="_blank">
+			<table id="panel" class="table">
+				<tr><td width="20%">num_iid</td><td><div id="num_iid"></div><input type="hidden" name="num_iid" value="" /></td></tr>
+				<tr><td>宝贝标题</td><td><div id="title"></div><input type="hidden" name="title" value="" /></td></tr>
+				<tr><td>宝贝价格</td><td><div id="price"></div><input type="hidden" name="price" value="" /></td></tr>
+				<tr><td>宝贝主图</td><td><div id="thumb"></div><input type="hidden" name="thumb" value="" /></td></tr>
+				<tr><td>宝贝所有图</td><td><div id="thumbs"></div><input type="hidden" name="thumbs" value="" /></td></tr>
+				<tfoot>
+					<tr><th colspan="2"><input type="submit" class="btn btn-primary" value="POST到网站后台" /></th></tr>
+				</tfoot>
+			</table>
+			</form>
+		</div>
+		
+	</div>
+</body>
+</html>

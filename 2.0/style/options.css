@@ -1,0 +1,31 @@
+body{font-size:14px;background:#833E75;color:#DC9FB9}
+a{color:#F7019B}
+p{margin:1em 0em}
+.alert{font-size:14px;}
+h1{color:#DC9FB9;}
+h3{color:#fff}
+#wrapper{width:800px;margin:0px auto;}
+	#header{margin:20px auto;border-bottom:#9c5c8f 1px solid;}
+		#header #logo{float:left}
+		#header #topbar{float:right;font-size:14px;color:#DC9FB9;margin-top:10px;}
+	#container{margin-top:0px;padding:20px 0px;}
+	.r-section{position:relative;}
+	.r-title{color:#fff;margin-bottom:20px;}
+	.r-oauth{}
+	.r-item{margin:10px 0px 20px 0px;}
+	.r-item input.text{background:transparent;width:250px;height:34px;line-height:34px;font-size:18px;border:#821F6D 3px solid;border-radius:3px;z-index:2;position:relative;padding:2px;}
+	.r-label{font-size:14px;color:#999;position:absolute;left:3px;width:234px;height:31px;_height:28px;z-index:1;padding:10px 10px 0px 10px;background:#F4F7FA;_margin-top:3px;*margin-top:3px;}
+	.r-label-on{background:#ffffcc;color:#ccc;text-align:right;}
+	.r-tip{margin-left:10px;color:#fff;display:none}
+	#error-message{line-height:40px;color:#F97272;display:inline;margin-left:20px;}
+	.r-tip em{color:#F7019B;font-weight:bold;text-decoration:underline}
+	.r-submit{height:40px;border:none;float:left;text-indent:-9999px;display:block;cursor:pointer;width:150px;}
+	.r-submit:active,.r-submit:hover{background-position:0 -41px;}
+	.l-submit{width:130px;display:block;background:url(../images/bg-login.png);}
+	.l-submit:hover{background-position:0px -40px;}
+	
+	#loginWrapper,#userWrapper{display:none}
+	dl#user dt{text-align:center;float:left;}
+	dl#user dt img{border:#821F6D 5px solid;border-radius:4px;}
+	dl#user dd{margin-left:200px;}
+	dl#user dd h3{margin:0px;line-height:20px}

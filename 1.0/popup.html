@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="style/main.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+chrome.tabs.getSelected(null,function(tab){
+	if(getUserId()){
+		if(checkTaobaoItemUrl(tab.url)){
+			chrome.tabs.sendRequest(tab.id, {
+			      requestEvent: "getNumId"
+			    }, function(response) {
+			    	var iid = response.data;
+			    	if(iid>0){
+			    		$("#message").html('<img src="http://yfl.api.yarpar.com/ui/images/icons/loading.gif" />')
+						$.post('http://yfl.api.yarpar.com/query',{iid:iid,client:'chrome'},function(data){
+							setIcon('',data.rebate,tab.id);
+							$("#rebate").html(data.rebate)
+							$("#rebateUrl").attr('href',data.click_url);
+							if(data.rebate>0){
+								chrome.tabs.sendRequest(tab.id, {
+								      requestEvent: "openBox"
+								    }, function(response) {     
+								})
+							}else{
+								$("#message").html('此宝贝不支持返利！');
+							}
+						},'json')
+					}else{
+						$("#message").html('这不是有效的淘宝宝贝详情页面哦~ <p>如果您正在查看淘宝宝贝，雅返利图标上会自动显示当前的返利金额。</p><p>点击图标，在显示出来的宝贝页面上按照正常的淘宝购物流程购买。即可返利啦。<p><a target="_blank" href="http://www.yarpar.com/helps/rebates/#yafanli">详细了解</a></p>');
+					}
+			        
+			})
+		}else{
+			$("#message").html('这不是有效的淘宝宝贝详情页面哦~ <p>如果您正在查看淘宝宝贝，雅返利图标上会自动显示当前的返利金额。</p><p>点击图标，在显示出来的宝贝页面上按照正常的淘宝购物流程购买。即可返利啦。<p><a target="_blank" href="http://www.yarpar.com/helps/rebates/#yafanli">详细了解</a></p>');
+		}
+	}
+	
+})
+
+
+</script>
+<style type="text/css">
+body{font-family:"Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;font-size:14px;width:200px;height:100px;}
+</style>
+</head>
+<body onload="init()">
+<iframe src="http://yfl.api.yarpar.com"></iframe>
+</body>
+</html>

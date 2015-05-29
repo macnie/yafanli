@@ -1,0 +1,16 @@
+/* Mask */
+.mask{width:100%;position:fixed;top:0;left:0;z-index:2000000;background-color:#000;filter:alpha(opacity=60);-moz-opacity: 0.6;opacity:0.6;color:#666;}
+.mask-body{font:14px '微软雅黑',Arial;position:fixed;left:0;width: 100%;z-index: 2000000;top:0px;text-align:center;}
+.mask-wrapper{width:700px;background-color:#fff;margin:0px auto;border:#4C4C4C 7px solid;box-shadow:2px 2px 3px 1px #555}
+.mask-container{background:#fff;opacity:1;}
+.mask-loading{border:#999 5px solid;padding:20px;text-align:center;}
+.mask-loading img{float:none;}
+h3.tm-dialog-title{border-bottom:none;margin:0px;line-height:30px;height:30px;background:#37012C url(../images/css/bg-body.png) repeat-x 0px -35px;color:#fff;text-align:left;font-size:14px;}
+	.tm-dialog-title .title{float:left;padding-left:10px;line-height:30px;}
+	.tm-dialog-title .more{cursor:pointer;float:right;line-height:30px;padding-right:10px;}
+.mask-dialog-content{text-align:left;border-top:none;}
+.mask-dialog-message{font-size:14px;color:#333;margin:10px 0px;padding:10px 0px;text-align:center;line-height:25px;}
+.mask-dialog-buttons{margin-top:20px;text-align:center;}
+.mask-label{height:30px;background:#DCEAF5;border-bottom:#DFDFDF 1px solid;margin:0px auto 10px auto}
+.mask-label li{cursor:pointer;float:left;padding:0px 5px 5px 5px;margin:5px 5px 0px 10px;}
+.mask-label li.current{background:#fff;position:relative;top:-1px;padding:0px 5px 6px 5px;border:#DFDFDF 1px solid;border-bottom:0px;}

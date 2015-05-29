@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="main.css" />
+<script type="text/javascript" src="./jquery.js"></script>
+<script type="text/javascript" src="./main.js"></script>
+<script type="text/javascript">
+	function login(){
+		disableForm();
+		var email = $("input[name='email']").val();
+		var password = $("input[name='password']").val();
+		$.post('http://www.yarpar.com/api/get_user_info',{email:email,password:password},function(data){
+			if(data.status){
+				localStorage["id"] = data.id;
+				localStorage['nickname'] = data.nickname;
+				localStorage['avatar'] = data.avatar;
+				localStorage['space'] = data.space;
+				localStorage['fan_count'] = data.fan_count;
+				localStorage['follow_count'] = data.follow_count;
+				localStorage['product_count'] = data.product_count;
+				showContainer();
+			}else{
+				$("#flash").html(data.message)
+			}
+			enableForm();
+		},'json')
+		
+	}
+	function logout(){
+		localStorage["id"] = 'undefined';
+		localStorage['nickname'] = 0;
+		localStorage['avatar'] = 0;
+		localStorage['space'] = 0;
+		localStorage['fan_count'] = 0;
+		localStorage['follow_count'] = 0;
+		localStorage['product_count'] = 0;
+		showContainer();
+	}
+	function showContainer(){
+		if(localStorage["id"]>0){
+			$("#container").hide();
+			$("#account").show().html('<dl class="users"><dt><img src="'+localStorage['avatar']+'"></dt><dd><a href="'+localStorage['space']+'">'+localStorage['nickname']+'</a> <a href="javascript:;" onclick="logout()">退出</a><ul class="sns-counter"><li>'+localStorage['follow_count']+'<div>关注</div></li><li>'+localStorage['fan_count']+'<div>粉丝</div></li><li class="last">'+localStorage['product_count']+'<div>分享</div></li></ul><p>您已经绑定了雅趴网账号。尽情享受购物的便利吧！</p></dd></dl>');
+		}else{
+			$("#account").empty().hide();
+			$("#container").show()
+		}
+	}
+	$(function(){
+		showContainer();
+	})
+</script>
+<link href="./main.css" rel="stylesheet" media="all" />
+<style type="text/css">
+	body{font-family:"Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;background:url(http://www.yarpar.com/ui/images/css/background.png)}
+	a{color:#336699}
+	a:hover{color:#FB039D}
+	#wrapper{width:800px;min-height:850px;margin:20px auto;background:#fff;border-radius:10px;padding:20px;}
+	h1,h3{font-weight:normal;}
+	h1{text-align:center;padding-bottom:20px;margin-bottom:20px;font-size:32px;border-bottom:#eee 1px solid;}
+	h3{font-size:16px;}
+	input.text{width:300px;line-height:30px;height:30px;font-size:14px}
+	input.button{padding:10px 20px;font-size:16px;}
+	#passport{margin-top:30px;margin-left:200px;}
+	.alert{text-align:center;padding:10px;}
+	#passport h3{display:inline-block;line-height:30px;height:30px;}
+	#passport p{display:inline-block;margin-left:50px;}
+	#flash{color:#ff0000;}
+	dl.users dt{float:left}
+	dl.users dd{margin-left:140px;}
+	ul.sns-counter{margin:0px;padding:0px;list-style:none}
+		ul.sns-counter li{text-align:center;padding:5px 20px;border-right:#eee 1px solid;display:inline-block;}
+		ul.sns-counter li.last{border-right:none;}
+</style>
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<h1>雅返利选项设置</h1>
+			
+		
+	</div>
+	<div id="container">
+		<div class="alert">提醒：您需要绑定雅趴账户，才能得到返利哦</div>
+		<div id="passport">
+			<div>
+			<h3>邮箱</h3>
+			<p><input type="text" name="email" value="" class="text" /></p>
+			</div>
+			<div>
+			<h3>密码</h3>
+			<p><input type="password" name="password" value="" class="text" /></p>
+			</div>
+			<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+			<p><input type="submit" onclick="login()" class="button" value="登录" /> 或 <a href="http://www.yarpar.com/users/register" target="_blank">新用户注册</a></p>
+			<p id="flash"></p>
+		</div>
+	</div>
+	<div id="account">
+	
+	</div>
+	<div id="footer">
+		<h3>关于雅返利的常见疑问</h3>
+		<iframe width="100%" height="400px"  scrolling="auto" frameborder="0" src="http://www.yarpar.com/helps/clients/yafanli">
+		
+		</iframe>
+	</div>
+</div>
+</body>
+</html>

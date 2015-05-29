@@ -1,0 +1,26 @@
+{
+  "id":"gbjdgiaabhoblhfckmpfhpcjighkpefh",
+  "name": "雅返利",
+  "version": "1.0",
+  "homepage_url":"http://www.yarpar.com/clients/yafanli",
+  "description": "通过雅返利您可以在淘宝购物查询和返利。当您购买宝贝并交易成功后，请到雅趴网http://www.yarpar.com,到您的个人账户中提取现金。",
+  "browser_action": {
+    "default_icon": "images/icon.png",
+    "popup": "popup.html",
+    "default_title": "雅返利"      // optional; shown in tooltip
+  },
+  "background_page":"background.html",
+  "options_page":"options.html",
+  "content_scripts": [
+    {
+      "matches": ["*://*.taobao.com/*","*://*.tmall.com/*"],
+      "js": ["js/jquery.js","js/content.js"]
+    }
+  ],
+  "permissions": ["*://*/*","tabs","contextMenus","notifications","cookies"],
+  "icons": {
+    "16": "images/icon.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  }
+}

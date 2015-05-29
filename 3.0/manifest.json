@@ -1,0 +1,28 @@
+{
+  "name": "采宝贝",
+  "version": "3.0",
+  "manifest_version": 2,
+  "homepage_url":"http://www.yarpai.com",
+  "description": "通过采宝贝您可以快速采集到淘宝宝贝的详细信息。悲催的淘宝客们有福啦！",
+  "browser_action": {
+    "default_icon": "images/icon.png",
+    "default_popup": "popup.html",
+    "default_title": "采宝贝"
+  },
+  "background":{ "scripts": ["js/jquery.js","js/global.js","js/background.js"]},
+  "options_page":"options.html",
+  "content_scripts": [
+    {
+      "matches": ["*://*.taobao.com/*","*://*.tmall.com/*"],
+       "run_at":"document_start",
+       "css": ["style/content.css"],
+       "js": ["js/jquery.js","js/content.js"]
+    }
+  ],
+  "permissions": ["*://*/*","tabs","contextMenus","cookies"],
+  "icons": {
+    "16": "images/icon.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  }
+}

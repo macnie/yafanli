@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="main.css" />
+<script type="text/javascript" src="./jquery.js"></script>
+<script type="text/javascript" src="./main.js"></script>
+<script type="text/javascript">
+/*
+chrome.tabs.onCreated.addListener(function(tab) {
+  alert(tab.url)
+});*/
+chrome.contextMenus.create({
+    title: '使用雅返利返现', 
+    onclick: function(info, tab) {
+    	if(getUserId()){
+    		chrome.tabs.sendRequest(tab.id, {
+			      requestEvent: "openBox"
+			    }, function(response) {     
+			})
+    	}
+        
+    },
+    contexts:['all']
+});
+chrome.extension.onRequest.addListener(
+function(request, sender, sendResponse) {
+if (request.requestEvent == "getUserId")
+  sendResponse({data:localStorage["id"]});
+else
+  sendResponse({}); // snub them.
+});
+chrome.tabs.onSelectionChanged.addListener
+(
+  function(tabid, windowId)
+  {
+  	chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230],'tabId':tabid});
+	chrome.browserAction.setBadgeText({text:'?','tabId':tabid});
+    chrome.tabs.get(tabid, function(currentTab){ show(currentTab,currentTab.url)});
+  }
+);
+chrome.tabs.onUpdated.addListener(
+function(tabid)
+  {
+  	chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230],'tabId':tabid});
+	chrome.browserAction.setBadgeText({text:'?','tabId':tabid});
+    chrome.tabs.get(tabid, function(currentTab){ show(currentTab,currentTab.url)});
+  }
+);
+</script>
+<link href="./main.css" rel="stylesheet" media="all" />
+</head>
+<body>
+<div id="wrapper">
+<div id="passport">
+	<form action="http://www.yarpar.com/api/login">
+		<h3>登录雅趴网</h3>
+		<dl>
+		<dt>邮箱：</dt>
+		<dd><input type="text" name="email" class="text" /></dd>
+		<dt>密码：</dt>
+		<dd><input type="password" name="password" class="text" /></dd>
+		</dl>
+		<input type="submit" name="fen" />
+	</form>
+</div>
+<h1>当前此宝贝可返现：<span id="rebate"></span>元 <a id="rebateUrl" target="_blank" href="">返现购买</a></h1>
+</div>
+</body>
+</html>
